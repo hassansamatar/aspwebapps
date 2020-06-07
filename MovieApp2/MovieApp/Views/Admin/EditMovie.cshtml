@@ -1,0 +1,121 @@
+﻿@model MovieApp.Model.Movie
+
+@{
+    ViewBag.Title = "EditMovie";
+}
+
+<script type="text/javascript">
+    function showpreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+
+<h2>Edit movie</h2>
+
+<div class="container">
+    <div id="rammeverkForRegisterer">
+        <br />
+        @using ((Html.BeginForm("EditMovie", "Admin", FormMethod.Post,
+                              new { enctype = "multipart/form-data" })))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Actor, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Actor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Actor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Director, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Director, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Director, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReleasedYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ReleasedYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReleasedYear, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <fieldset>
+                    <div class="col-xs-10">
+
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-2">
+                        <input id="ImagePath" title="Upload a product image"
+                               type="file" name="file" onchange="showpreview(this);" />
+                    </div>
+                </fieldset>
+            </div>
+
+            <br />
+            <figure>
+                <div class="float-left mr-5 col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-2">
+                    <img src="@Url.Content("/Content/"+Model.Image)" width="225" height="300" />
+                </div>
+            </figure>
+
+            <figure>
+                <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-2">
+                    <img scr="" id="imagePreview" width="225" height="300" alt="nytt bilde" />
+                </div>
+            </figure>
+
+
+            <br /><br /><br /><br /><br /><br /><br />
+            <div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-xs-10 col-xs-offset-3  col-lg-offset-2">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    <br />
+                </div>
+            </div>
+        </div>
+
+
+        }
+
+    </div>
+</div>
+
+

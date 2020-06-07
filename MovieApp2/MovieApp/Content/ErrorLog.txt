@@ -1,0 +1,16 @@
+
+6/24/2019 10:40:11 PM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+6/24/2019 10:43:32 PM	System.NullReferenceException -> Failure in file upload
+1/9/2020 1:08:29 PM	System.NullReferenceException -> HomeController, GetZipCode
+1/9/2020 1:08:34 PM	System.NullReferenceException -> HomeController, GetZipCode
+1/9/2020 3:25:08 PM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+1/9/2020 3:25:19 PM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+1/11/2020 9:51:04 AM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+1/11/2020 9:56:27 AM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+1/14/2020 2:50:01 PM	System.NullReferenceException -> Failure in file upload
+2/7/2020 7:53:47 PM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+2/7/2020 7:55:10 PM	System.NullReferenceException -> Failure in file upload
+2/7/2020 7:59:45 PM	System.NullReferenceException -> UserDAL, GetUser, ingen bruker funnet
+2/7/2020 8:02:57 PM	System.NullReferenceException -> Failure in file upload
+2/7/2020 8:13:24 PM	System.NullReferenceException -> Failure in file upload
+2/7/2020 8:30:38 PM	System.NullReferenceException -> Failure in file upload

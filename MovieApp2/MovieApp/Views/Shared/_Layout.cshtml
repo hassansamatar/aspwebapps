@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmKveld: De Beste Filmene til de Beste Prisene!</title>
+    <meta name="description" content="Kjøp av filmer for nedlastning på nett.">
+    <meta name="keywords" content="Film, kjøp, Nedlastning, Movie">
+    <meta name="author" content="Gaute, Addis, Hassen">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    <style>
+
+        /* Bakgrunnsfarge på den øver delen av Nettstedet. */
+
+        body {
+            background-color: rgb(221, 210, 219) !important;
+        }
+
+        /* Dette er Logo egenskapene. */
+
+        #logo {
+            margin-top: 1%;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 30px;
+            color: orangered !important;
+            margin-left: 35%;
+        }
+
+
+        /* Den globale navigasjonsmenyen sin border. */
+        nav {
+            border: 2px black solid !important;
+        }
+
+        #adminSide{
+            margin-top: 50px;
+        }
+        /* Brand navnet i globale navigasjonsmenyen får egenskaper. */
+        /* Registererings knappene på hovednavigasjonsnen. Denne holder dem i midten ved mobil størrelse vindu. */
+        #globaleNavigasjonsmenyen {
+            text-align: center !important;
+        }
+
+        /* Dette egenskaper for filmsjanger overskifter. */
+        h2 {
+            color: white !important;
+            font-size: 400% !important;
+            font-family: Sans-serif;
+            margin-top: 3% !important;
+        }
+
+
+        /* Dette er rammeverket for login nettsiden. */
+        #rammeverkForLogin {
+            background-color: white !important;
+            padding-bottom: 2%;
+            border: 3px black solid !important;
+            border-radius: 25px;
+        }
+
+        /* Dette er rammeverket for registrer nettsiden. */
+        #rammeverkForRegisterer {
+            background-color: white !important;
+            padding-bottom: 2%;
+            border: 3px black solid !important;
+            border-radius: 25px;
+        }
+
+        /* Dette er rammeverket for Add to Cart nettsiden. */
+        #rammeverkForAddToCart {
+            background-color: white !important;
+            padding-bottom: 2%;
+            border: 3px black solid !important;
+            border-radius: 25px;
+        }
+
+        /* Dette er rammeverket for bestillings nettsiden. */
+        #rammeverkForBestilling {
+            background-color: white !important;
+            padding-bottom: 2%;
+            border: 3px black solid !important;
+            border-radius: 25px;
+        }
+
+        /* Dette er rammeverket for ferdig kjøp nettsiden. */
+        #rammeverkForFerdigKjop {
+            background-color: white !important;
+            padding-bottom: 42% !important;
+            border: 3px black solid !important;
+            border-radius: 25px;
+        }
+
+        /* Dette er egenskap endringer når skjermstørrelsen er 1200px eller mindre*/
+        @@media (max-width:800px) {
+
+            h2 {
+                font-size: 180% !important;
+            }
+
+            h3 {
+                font-size: 80% !important;
+            }
+
+            #rammeverkForFerdigKjop {
+                background-color: white !important;
+                padding-bottom: 2%;
+                border: 3px black solid !important;
+                border-radius: 25px;
+                padding-bottom: 60% !important;
+            }
+        }
+
+        /* Dette er egenskap endringer når skjermstørrelsen er 1200px eller mindre*/
+        @@media (max-width:1200px) {
+            #rammeverkForFerdigKjop {
+                background-color: white !important;
+                padding-bottom: 2%;
+                border: 3px black solid !important;
+                border-radius: 25px;
+                padding-bottom: 60% !important;
+            }
+        }
+
+
+        /* Dette er egenskapene for overskriften inne i rammeverket for hjemmesiden. */
+        #overskriftForFilmer {
+            color: black !important;
+            font-family: sans-serif;
+            margin-bottom: 1%;
+            font-weight: bold;
+        }
+
+        /* Dette er egenskaper for footeren. */
+        #footer {
+            border: 2px black solid !important;
+            background-color: white;
+            color: black;
+            padding-bottom: 1%;
+            padding-top: 1%;
+            margin-top: 8%;
+        }
+
+        /* Dette er overskriften i footeren. */
+        #hovedFooterTekst {
+            text-align: justify !important;
+        }
+
+        /* Dette er undertekst i footeren. */
+        #footerTekst {
+            font-weight: bold;
+            font-size: 30px;
+            color: orangered !important;
+            text-align: justify !important;
+        }
+
+        /* Dette er lenker i footeren. */
+        #footerLinker {
+            background-color: yellow;
+            margin-top: 2.5%;
+            font-weight: bold;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var innlogget = '@Session["BrukerId"]';
+
+            console.log(innlogget);
+
+            if (innlogget != 0) {
+
+            $(document).ready(function () {
+
+                    $.ajax({
+                        url: '/Home/getUserName',
+                        type: 'POST',
+                        data: { bruker: innlogget },
+                        dataType: 'json',
+                        success: function (brukerNavn) {
+                            VisBruker(brukerNavn)
+                        },
+                        error: function (x, y, z) {
+                            alert(x + '\n' + y + '\n' + z);
+                        }
+                    });
+
+            })
+
+            }
+        })
+
+        function VisBruker(bruker) {
+
+                var utBruker = "Logget inn som: "+ bruker;
+
+            $(".navbar-text").html(utBruker);
+
+
+        }
+    </script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("FilmApp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <p class="navbar-text">@Session["UserName"]</p>
+                    </li>
+                    <li>
+                        @if (Session["UserName"] != null)
+                        {
+
+                            @Html.ActionLink("Handlekurv", "ListCart", "Home")
+                        }
+                    </li>
+                    <li>
+                        @if (Session["UserName"] != null)
+                        {
+
+                            @Html.ActionLink("Logout", "Logout", "Home")
+                        }
+                    </li>
+                    <li>
+                        @if (Session["UserName"] == null)
+                        {
+
+                            @Html.ActionLink("Login", "Login", "Home")
+                        }
+                    </li>
+                    <li>
+                        @if (Session["UserName"] == null)
+                        {
+
+                            @Html.ActionLink("Registrer", "Registrer", "Home")
+                        }
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Admin", "Dashbord", "Admin")
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,109 @@
+﻿@model MovieApp.Model.Movie
+
+
+<h2 id="overskrifterSomSkalBliMindre" class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-3">Legg til Film!</h2>
+
+<hr />
+<div class="container">
+    <div id="rammeverkForRegisterer">
+        <br /><br />
+
+        @using ((Html.BeginForm("AddMovie", "Admin", FormMethod.Post,
+                               new { enctype = "multipart/form-data" })))
+
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Tile" } })
+                        <div class="col-xs-7 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-11 col-md-offset-0 col-lg-offset-0 col-lg-10">
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control", placeholder = "Genre" } })
+                        <div class="col-xs-7 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-11 col-md-offset-0 col-lg-offset-0 col-lg-10">
+                            @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        @Html.EditorFor(model => model.Actor, new { htmlAttributes = new { @class = "form-control", placeholder = "Actor" } })
+                        <div class="col-xs-7 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-11 col-md-offset-0 col-lg-offset-0 col-lg-10">
+                            @Html.ValidationMessageFor(model => model.Actor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        @Html.EditorFor(model => model.Director, new { htmlAttributes = new { @class = "form-control", placeholder = "Director" } })
+                        <div class="col-xs-7 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-11 col-md-offset-0 col-lg-offset-0 col-lg-10">
+                            @Html.ValidationMessageFor(model => model.Director, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-4 col-sm-10 col-sm-offset-4 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        <div id="visInfo">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        @Html.EditorFor(model => model.ReleasedYear, new { htmlAttributes = new { @class = "form-control", placeholder = "Year" } })
+                        <div class="col-xs-7 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-11 col-md-offset-0 col-lg-offset-0 col-lg-10">
+                            @Html.ValidationMessageFor(model => model.ReleasedYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Price in NOK" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <fieldset>
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-3 col-sm-10 col-sm-offset-3 col-md-3 col-md-offset-4 col-lg-3 col-lg-offset-4">
+                        Upload a product image:
+                        <input id="ImagePath" title="Upload a product image" type="file" name="file" />
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-10 col-xs-offset-4 col-sm-10 col-sm-offset-4 col-md-3 col-md-offset-0 col-lg-3 col-lg-offset-4">
+                    <input type="submit" value="Registrer" class="btn-lg btn-success" />
+                </div>
+            </div>
+
+        }
+
+        }
+
+        <h2 id="overskrifterSomSkalBliMindre" class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4"> @Html.ActionLink("Back to Dashbord", "Dashbord")</h2>
+        <hr />
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
+</div>

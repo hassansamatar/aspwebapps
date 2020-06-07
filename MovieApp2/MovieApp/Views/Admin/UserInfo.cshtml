@@ -1,0 +1,102 @@
+﻿@model MovieApp.Model.Users
+@{
+    ViewBag.Title = "UserInfo";
+    WebGrid grid = new WebGrid(source: Model.Orders, canSort: false);
+}
+<h2 id="overskrifterSomSkalBliMindre" class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-3"> User Info!</h2>
+
+<hr />
+<div id="rammeverkForRegisterer">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fornavn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fornavn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Etternavn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Etternavn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Epost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Epost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccessLevel)
+        </dd>
+    </dl>
+
+
+
+
+    @{
+        int i = 1;
+    }
+    @foreach (var item in Model.Orders)
+    {
+
+
+        <div class="container" style="width: 70%">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#@("collapse"+i)"> Vis ordeinfo: @item.Id</a>
+
+                        </h4>
+                        <p> @Html.ActionLink("Slett", "DeleteOrder", new { id = Model.Id, id2 = item.Id }) </p>
+                    </div>
+
+
+                    <div id="@("collapse"+i)" class="panel-collapse collapse">
+
+                        <table style="margin-left: 5px">
+                            <tr>
+                                <th>Tittel</th>
+                                <th>Pris</th>
+                            </tr>
+                            @foreach (var item2 in item.OrderItems)
+                            {
+                                <tr>
+                                    <td style="margin-left: 5px">@item2.Movie.Title</td>
+                                    <td style="margin-left: 5px">@item2.Movie.Price</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        i++;
+
+    }
+
+    <div class="form-group">
+        <div class="col-xs-10 col-xs-offset-3  col-lg-offset-1">
+            <h3>
+                @Html.ActionLink("Back to List", "UserList")
+                <br>
+            </h3>
+        </div>
+    </div>
+
+    <br /><br />
+</div>
+

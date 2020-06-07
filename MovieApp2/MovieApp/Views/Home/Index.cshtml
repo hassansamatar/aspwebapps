@@ -1,0 +1,12 @@
+﻿@model List<MovieApp.Model.Movie>
+
+@{
+    ViewBag.Title = "Test";
+}
+<div class=" row">
+    <hr />
+    @foreach (var Movie in Model)
+    {
+        @Html.Partial("ListePartial", Movie)
+    }
+</div>

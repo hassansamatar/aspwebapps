@@ -1,0 +1,53 @@
+﻿@model MovieApp.Model.User
+
+<br /><br /><br /><br /><br /><br />
+
+
+<div class="container">
+    <div id="rammeverkForLogin" class="col-xs-offset-3 col-xs-6 col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-6 col-lg-offset-3">
+        <br /> <br /><br /> <br />
+        <div class="col-xs-offset-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+            @using (Html.BeginForm(new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+            {
+                @Html.AntiForgeryToken()
+
+                <p class="col-xs-offset-1 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" style="font-weight:Bold; font-size:130%;"> Logg Inn</p>
+                <br />
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-0 col-sm-10 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+                            @Html.TextBoxFor(model => model.epost, new { @class = "form-control", placeholder = "E-post" })
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-0 col-sm-10 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+                            @Html.TextBoxFor(model => model.passord, new { @class = "form-control", placeholder = "Passord", type = "password" })
+                            @Html.ValidationMessageFor(model => model.passord, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="forgot">
+                        <a href="reset.html" class="btn-link">Glemt passord?</a>
+                        <a href="/Home/Registrer" class="btn btn-link"> Opprett ny Brukernavn</a><br />
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-1 col-sm-offset-2 col-md-offset-2 col-md-10">
+                            <input type="submit" value="Login" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+    </div>
+</div>
+
+<br /> <br /><br /> <br /><br /> <br /><br /> <br />

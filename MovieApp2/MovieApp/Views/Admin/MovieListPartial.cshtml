@@ -1,0 +1,31 @@
+﻿@model MovieApp.Model.Movie
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>Tile</th>
+                <th>Genre</th>
+                <th>Actor</th>
+                <th>Price</th>
+
+            </tr>
+            <tr>
+                <td>@Model.Title</td>
+                <td>@Model.Genre</td>
+                <td>@Model.Actor</td>
+                <td>@Model.Price</td>
+
+            </tr>
+        </table>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-left">
+            <a href="@Url.Action("EditMovie", "Admin", new { id = @Model.Id })" class="btn btn-success ">Edit</a>
+            <a href="@Url.Action("MovieDetails", "Admin", new { id = @Model.Id })" class="btn btn-primary ">Details</a>
+            <a href="#deleteViewModel" class="btn btn-large btn-danger" id="deleteBottun"
+               data-navn="@Model.Title"
+               data-id="@Model.Id" data-toggle="modal" data-deleteViewModel="true">delete</a>
+        </div>
+    </div>
+</div>
